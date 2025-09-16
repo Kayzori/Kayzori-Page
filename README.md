@@ -1,2 +1,1 @@
-# WebProtofoilo
-Projects ShowCase And Skills
+About Me, my skills, my projects, my contacts
