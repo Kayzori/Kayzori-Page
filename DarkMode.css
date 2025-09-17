@@ -1,0 +1,419 @@
+/* PixelArtStyle.css */
+/* Modern Pixel Art Style Portfolio - DARK THEME */
+
+/* Base styles and variables */
+:root {
+  --primary: #6a7bff;
+  --primary-light: #8c9bff;
+  --secondary: #ff7eb5;
+  --background: #1a1a2e;
+  --surface: #16213e;
+  --text: #e6e6e6;
+  --accent: #43c6ac;
+  --border: 2px solid #6a7bff;
+  --pixel-shadow: 4px 4px 0px #0f3460;
+  --pixel-shadow-small: 2px 2px 0px #0f3460;
+}
+
+/* Import modern pixel art fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'VT323', 'Silkscreen', monospace;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+  background-image: 
+    linear-gradient(rgba(26, 26, 46, 0.7) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 46, 0.7) 1px, transparent 1px);
+  background-size: 20px 20px;
+  padding-bottom: 2rem;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header styles */
+.site-header {
+  background-color: var(--surface);
+  border-bottom: var(--border);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--pixel-shadow-small);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.site-header h1 {
+  font-family: 'Press Start 2P', 'Silkscreen', monospace;
+  font-size: 1.5rem;
+  color: var(--primary);
+  text-shadow: 2px 2px 0px var(--primary-light);
+  margin-bottom: 0.5rem;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.site-header nav a {
+  font-family: 'Silkscreen', 'VT323', monospace;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem;
+  border: var(--border);
+  background-color: var(--surface);
+  box-shadow: var(--pixel-shadow-small);
+  transition: all 0.2s ease;
+}
+
+.site-header nav a:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--primary-light);
+}
+
+/* Section styles */
+.section {
+  padding: 3rem 0;
+}
+
+.section h2 {
+  font-family: 'Press Start 2P', 'Silkscreen', monospace;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  text-shadow: 3px 3px 0px var(--primary-light);
+  position: relative;
+  display: inline-block;
+}
+
+.section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--secondary);
+  image-rendering: pixelated;
+}
+
+.section h3 {
+  font-family: 'Silkscreen', 'VT323', monospace;
+  font-size: 1.5rem;
+  margin: 2rem 0 1.5rem;
+  color: var(--secondary);
+}
+
+/* About section */
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.about-photo img {
+  width: 100%;
+  border: var(--border);
+  image-rendering: pixelated;
+  box-shadow: var(--pixel-shadow);
+  transition: all 0.3s ease;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.about-photo img:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 8px 8px 0px var(--primary-light);
+  filter: brightness(1) contrast(1);
+}
+
+.container p {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+/* Projects section */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: var(--border);
+  background-color: var(--surface);
+  transition: all 0.3s ease;
+  box-shadow: var(--pixel-shadow);
+}
+
+.project-card:hover {
+  transform: translate(-5px, -5px);
+  background-color: var(--primary);
+  box-shadow: 8px 8px 0px var(--primary-light);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: var(--border);
+  image-rendering: pixelated;
+  filter: brightness(0.85);
+  transition: filter 0.3s ease;
+}
+
+.project-card:hover img {
+  filter: brightness(1);
+}
+
+.project-card h4 {
+  font-family: 'Silkscreen', 'VT323', monospace;
+  padding: 1rem;
+  text-align: center;
+  background-color: var(--surface);
+  color: var(--text);
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover h4 {
+  background-color: var(--primary);
+  color: var(--surface);
+}
+
+/* Contact section */
+#contact .container {
+  display: block;
+}
+
+#contact h2 {
+  margin-bottom: 2.5rem;
+}
+
+.contact-navigation {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.contact-navigation a {
+  font-family: 'Silkscreen', 'VT323', monospace;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.8rem 1.5rem;
+  border: var(--border);
+  background-color: var(--surface);
+  transition: all 0.2s ease;
+  box-shadow: var(--pixel-shadow-small);
+}
+
+.contact-navigation a:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--primary-light);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.social-links a {
+  font-family: 'Silkscreen', 'VT323', monospace;
+  padding: 0.8rem 1.5rem;
+  border: var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  box-shadow: var(--pixel-shadow-small);
+}
+
+.social-links a:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--primary-light);
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  border-top: var(--border);
+  background-color: var(--surface);
+  font-family: 'Silkscreen', 'VT323', monospace;
+  color: var(--text-light);
+}
+
+/* Pixel elements */
+.pixel-divider {
+  height: 4px;
+  background-color: var(--secondary);
+  margin: 2rem 0;
+  image-rendering: pixelated;
+}
+
+.pixel-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border: var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  box-shadow: var(--pixel-shadow-small);
+  font-family: 'Silkscreen', 'VT323', monospace;
+  cursor: pointer;
+}
+
+.pixel-button:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--primary-light);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .site-header .container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .site-header nav {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .social-links, .contact-navigation {
+    justify-content: center;
+  }
+  
+  .site-header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .section h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Pixel art animations */
+@keyframes pixel-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.pixel-bounce {
+  animation: pixel-bounce 2s infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-left: var(--border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border: var(--border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light);
+}
+
+/* Dark theme specific adjustments */
+.project-card {
+  background-color: rgba(22, 33, 62, 0.8);
+}
+
+/* Glow effects for dark mode */
+.site-header nav a,
+.contact-navigation a,
+.social-links a,
+.pixel-button {
+  box-shadow: 
+    var(--pixel-shadow-small),
+    0 0 5px rgba(106, 123, 255, 0.3);
+}
+
+.site-header nav a:hover,
+.contact-navigation a:hover,
+.social-links a:hover,
+.pixel-button:hover {
+  box-shadow: 
+    4px 4px 0px var(--primary-light),
+    0 0 10px rgba(106, 123, 255, 0.6);
+}
