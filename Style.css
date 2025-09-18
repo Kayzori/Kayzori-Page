@@ -1,5 +1,4 @@
 /* Light Pixel Art Style */
-
 :root {
   --primary: #6a7bff;
   --primary-light: #8c9bff;
@@ -41,7 +40,7 @@ body {
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
   padding-bottom: 2rem;
-  font-size: 20px;
+  font-size: 18px; /* 🔹 fixed body size */
   letter-spacing: 0.5px;
 }
 
@@ -55,7 +54,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 
 html, body {
   height: 100%;
@@ -84,6 +82,7 @@ main {
   top: 0;
   z-index: 100;
   box-shadow: var(--pixel-shadow-small);
+  transition: transform 0.3s ease;
 }
 
 .site-header .container {
@@ -95,7 +94,7 @@ main {
 
 .site-header h1 {
   font-family: 'Press Start 2P', 'Silkscreen', monospace;
-  font-size: 2.5rem;
+  font-size: 36px; /* 🔹 fixed */
   color: var(--primary);
   text-shadow: 2px 2px 0px var(--primary-light);
   margin-bottom: 0.5rem;
@@ -156,7 +155,7 @@ main {
 
 .section h2 {
   font-family: 'Press Start 2P', 'Silkscreen', monospace;
-  font-size: 2rem;
+  font-size: 28px; /* 🔹 fixed */
   margin-bottom: 2rem;
   color: var(--primary);
   text-shadow: 3px 3px 0px var(--primary-light);
@@ -177,7 +176,7 @@ main {
 
 .section h3 {
   font-family: 'Silkscreen', 'VT323', monospace;
-  font-size: 1.5rem;
+  font-size: 22px; /* 🔹 fixed */
   margin: 2rem 0 1.5rem;
   color: var(--secondary);
 }
@@ -192,7 +191,7 @@ main {
 
 .about-text p {
   margin-bottom: 1.5rem;
-  font-size: 1.2rem;
+  font-size: 18px;
 }
 
 .about-photo img {
@@ -210,7 +209,7 @@ main {
 
 .container p {
   margin-bottom: 1.5rem;
-  font-size: 1.2rem;
+  font-size: 18px;
 }
 
 /* Projects section */
@@ -247,6 +246,7 @@ main {
 
 .project-card h4 {
   font-family: 'Silkscreen', 'VT323', monospace;
+  font-size: 18px;
   padding: 1rem;
   text-align: center;
   background-color: var(--surface);
@@ -299,7 +299,7 @@ main {
 
 .contact-email {
   margin-bottom: 2rem;
-  font-size: 1.3rem;
+  font-size: 20px; /* 🔹 fixed */
   text-align: center;
 }
 
@@ -356,6 +356,7 @@ main {
   border-top: var(--border);
   background-color: var(--surface);
   font-family: 'Silkscreen', 'VT323', monospace;
+  transition: transform 0.3s ease;
 }
 
 /* Pixel elements */
@@ -389,64 +390,35 @@ main {
 
 /* Pixel art animations */
 @keyframes pixel-bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
-
-.pixel-bounce {
-  animation: pixel-bounce 2s infinite;
-}
+.pixel-bounce { animation: pixel-bounce 2s infinite; }
 
 /* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
+::-webkit-scrollbar { width: 12px; }
 ::-webkit-scrollbar-track {
   background: var(--surface);
   border-left: var(--border);
 }
-
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
   border: var(--border);
 }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-light);
-}
-
-/* Mobile Responsive Design */
-@media (max-width: 1280px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: center;
-    justify-items: center;
-  }
-
+/* ================== Responsive ================== */
+@media (max-width: 1080px) {
+  .container { padding: 0 1rem; }
+  
+  .menu-toggle { display: flex; z-index: 1000; }
+  
   .about-photo img {
     width: 200px;
     border: var(--border);
     image-rendering: pixelated;
     box-shadow: var(--pixel-shadow);
     transition: all 0.3s ease;
-  }
-}
-
-@media (max-width: 780px) {
-  .container {
-    padding: 0 1rem;
-  }
-  
-  /* Mobile navigation */
-  .menu-toggle {
-    display: flex;
-    z-index: 1000;
   }
   
   .site-header nav {
@@ -465,85 +437,28 @@ main {
     z-index: 999;
     gap: 1rem;
   }
+  .site-header nav.active { right: 0; }
+  .site-header nav a { width: 100%; text-align: center; padding: 1rem; }
   
-  .site-header nav.active {
-    right: 0;
-  }
+  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
   
-  .site-header nav a {
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-  }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .site-header .container { flex-direction: row; text-align: left; }
+  .site-header h1 { font-size: 28px; }
   
-  /* Mobile menu animation */
-  .menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
+  .section { padding: 2rem 0; }
+  .section h2 { font-size: 24px; }
+  .section h3 { font-size: 20px; }
   
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
+  .projects-grid { grid-template-columns: 1fr; }
+  .social-links, .contact-navigation { justify-content: center; }
+  .contact-navigation { flex-direction: column; align-items: center; }
+  .contact-navigation a { width: 100%; text-align: center; }
+  .social-links { flex-direction: column; align-items: center; }
+  .social-links a { width: 100%; text-align: center; }
   
-  .menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
-  }
-  
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .site-header .container {
-    flex-direction: row;
-    text-align: left;
-  }
-  
-  .site-header h1 {
-    font-size: 1.2rem;
-  }
-  
-  .section {
-    padding: 2rem 0;
-  }
-  
-  .section h2 {
-    font-size: 1.5rem;
-  }
-  
-  .section h3 {
-    font-size: 1.3rem;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .social-links, .contact-navigation {
-    justify-content: center;
-  }
-  
-  .contact-navigation {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .contact-navigation a {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .social-links {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .social-links a {
-    width: 100%;
-    text-align: center;
-  }
-  
-  /* Improve touch targets */
   a, button, .pixel-button {
     min-height: 44px;
     min-width: 44px;
@@ -551,35 +466,20 @@ main {
     align-items: center;
     justify-content: center;
   }
-  
-  .project-card {
-    padding: 0.5rem;
-  }
+  .project-card { padding: 0.5rem; }
 }
 
 @media (max-width: 480px) {
-  .site-header h1 {
-    font-size: 1rem;
+  /* 🔹 Zoom header & footer */
+  .site-header, .site-footer {
+    transform: scale(1.1);
+    transform-origin: center;
   }
-  
-  .section h2 {
-    font-size: 1.3rem;
-  }
-  
-  .section h3 {
-    font-size: 1.1rem;
-  }
-  
-  .about-text p, .container p {
-    font-size: 1rem;
-  }
-  
-  .contact-email {
-    font-size: 1.1rem;
-  }
-  
-  .project-card h4 {
-    font-size: 1rem;
-    padding: 0.8rem;
-  }
+
+  .site-header h1 { font-size: 24px; }
+  .section h2 { font-size: 20px; }
+  .section h3 { font-size: 18px; }
+  .about-text p, .container p { font-size: 15px; }
+  .contact-email { font-size: 18px; }
+  .project-card h4 { font-size: 16px; padding: 0.8rem; }
 }
