@@ -1,7 +1,5 @@
-/* PixelArtStyle.css */
-/* Modern Pixel Art Style Portfolio */
+/* Light Pixel Art Style */
 
-/* Base styles and variables */
 :root {
   --primary: #6a7bff;
   --primary-light: #8c9bff;
@@ -14,6 +12,37 @@
   --border: 2px solid #333;
   --pixel-shadow: 4px 4px 0px #333333;
   --pixel-shadow-small: 2px 2px 0px #333333;
+  --menu-height: 60px;
+}
+
+/* Dark Pixel Art Style */
+body.dark-theme {
+  --primary: #ff6a88;
+  --primary-light: #ff8cab;
+  --secondary: #8c9bff;
+  --background: #151515;
+  --surface: #1e1e1e;
+  --text: #f0f0f5;
+  --text-light: #aaaaaa;
+  --accent: #43c6ac;
+  --border: 2px solid #444;
+  --pixel-shadow: 4px 4px 0px #000000;
+  --pixel-shadow-small: 2px 2px 0px #000000;
+  --menu-height: 60px;
+}
+
+body {
+  font-family: 'VT323', 'Silkscreen', monospace;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  padding-bottom: 2rem;
+  font-size: 20px;
+  letter-spacing: 0.5px;
 }
 
 /* Import modern pixel art fonts */
@@ -27,23 +56,23 @@
   padding: 0;
 }
 
-body {
-  font-family: 'VT323', 'Silkscreen', monospace;
-  background-color: var(--background);
-  color: var(--text);
-  line-height: 1.6;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.7) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.7) 1px, transparent 1px);
-  background-size: 20px 20px;
-  padding-bottom: 2rem;
-  font-size: 20px;
-  letter-spacing: 0.5px;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content grows and pushes footer down */
+main {
+  flex: 1;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 /* Header styles */
@@ -66,10 +95,33 @@ body {
 
 .site-header h1 {
   font-family: 'Press Start 2P', 'Silkscreen', monospace;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: var(--primary);
   text-shadow: 2px 2px 0px var(--primary-light);
   margin-bottom: 0.5rem;
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: center;
 }
 
 .site-header nav {
@@ -300,8 +352,7 @@ body {
 /* Footer */
 .site-footer {
   text-align: center;
-  padding: 2rem 0;
-  margin-top: 3rem;
+  padding: 2rem;
   border-top: var(--border);
   background-color: var(--surface);
   font-family: 'Silkscreen', 'VT323', monospace;
@@ -336,47 +387,6 @@ body {
   box-shadow: 4px 4px 0px var(--primary-light);
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  body {
-    font-size: 18px;
-  }
-  
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .site-header .container {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .site-header nav {
-    justify-content: center;
-    margin-top: 1rem;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .social-links, .contact-navigation {
-    justify-content: center;
-  }
-  
-  .site-header h1 {
-    font-size: 1.2rem;
-  }
-  
-  .section h2 {
-    font-size: 1.5rem;
-  }
-  
-  .section h3 {
-    font-size: 1.3rem;
-  }
-}
-
 /* Pixel art animations */
 @keyframes pixel-bounce {
   0%, 100% {
@@ -408,4 +418,159 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-light);
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  /* Mobile navigation */
+  .menu-toggle {
+    display: flex;
+    z-index: 1000;
+  }
+  
+  .site-header nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background-color: var(--surface);
+    border-left: var(--border);
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 999;
+    gap: 1rem;
+  }
+  
+  .site-header nav.active {
+    right: 0;
+  }
+  
+  .site-header nav a {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  /* Mobile menu animation */
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .site-header .container {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .site-header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .section {
+    padding: 2rem 0;
+  }
+  
+  .section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .section h3 {
+    font-size: 1.3rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .social-links, .contact-navigation {
+    justify-content: center;
+  }
+  
+  .contact-navigation {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-navigation a {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .social-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .social-links a {
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Improve touch targets */
+  a, button, .pixel-button {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .project-card {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+  
+  .site-header h1 {
+    font-size: 1rem;
+  }
+  
+  .section h2 {
+    font-size: 1.3rem;
+  }
+  
+  .section h3 {
+    font-size: 1.1rem;
+  }
+  
+  .about-text p, .container p {
+    font-size: 1rem;
+  }
+  
+  .contact-email {
+    font-size: 1.1rem;
+  }
+  
+  .project-card h4 {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
 }
