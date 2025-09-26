@@ -408,7 +408,6 @@ main {
 ::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
 
 /* ================== Responsive ================== */
-/* ================== Responsive ================== */
 @media (max-width: 1080px) {
   .container { padding: 0 1rem; }
   
